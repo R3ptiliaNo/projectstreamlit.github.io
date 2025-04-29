@@ -1,4 +1,3 @@
-
 import streamlit as st
 import os
 import json
@@ -44,8 +43,14 @@ else:
             lon, lat = transformer.transform(x, y)
 
             popup_text = f"<b>{attr.get('nombre', '')}</b><br>{attr.get('calle', '')} {attr.get('altura', '')}<br>{attr.get('barrio', '')}"
-            folium.Marker(
+
+            folium.CircleMarker(
                 location=[lat, lon],
+                radius=5,
+                color='blue',
+                fill=True,
+                fill_color='blue',
+                fill_opacity=0.7,
                 popup=popup_text,
                 tooltip=attr.get("objeto", "Punto")
             ).add_to(m)
